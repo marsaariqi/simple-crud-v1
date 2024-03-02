@@ -24,7 +24,7 @@ const NewTaskButton = () => {
             return;
         }
         try {
-            const res = await fetch("http://localhost:3000/api/todos", {
+            const res = await fetch("https://simple-crud-tawny.vercel.app/api/todos", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
