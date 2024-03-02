@@ -6,7 +6,7 @@ const getToDo = async () => {
 
   // await new Promise(resolve => setTimeout(resolve, 2000))
   try {
-    const res = await fetch("https://simple-crud-tawny.vercel.app/api/todos", { cache: "no-store" });
+    const res = await fetch("https://awbibib-todo.vercel.app/api/todos", { cache: "no-store" });
 
     if (!res.ok) {
       throw new Error("Failed to fetch ToDo")

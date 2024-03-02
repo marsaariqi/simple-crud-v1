@@ -20,7 +20,7 @@ const EditDeleteIcon = ({ id, title, desc, prio }: { id: string, title: string, 
 
     const handleDelete = async () => {
         try {
-            const res = await fetch(`https://simple-crud-tawny.vercel.app/api/todos?id=${id}`, {
+            const res = await fetch(`https://awbibib-todo.vercel.app/api/todos?id=${id}`, {
                 method: 'DELETE',
             });
             if (res.ok) {
