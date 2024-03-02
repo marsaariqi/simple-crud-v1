@@ -16,11 +16,11 @@ const EditDeleteIcon = ({ id, title, desc, prio }: { id: string, title: string, 
     const [openModalEdit, setopenModalEdit] = useState<boolean>(false)
     const [openModalDelete, setopenModalDelete] = useState<boolean>(false)
 
-
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
     const handleDelete = async () => {
         try {
-            const res = await fetch(`https://awbibib-todo.vercel.app/api/todos?id=${id}`, {
+            const res = await fetch(`${baseUrl}/api/todos?id=${id}`, {
                 method: 'DELETE',
             });
             if (res.ok) {
@@ -38,7 +38,7 @@ const EditDeleteIcon = ({ id, title, desc, prio }: { id: string, title: string, 
         e.preventDefault();
 
         try {
-            const res = await fetch(`https://awbibib-todo.vercel.app/api/todos/${id}`, {
+            const res = await fetch(`${baseUrl}/api/todos/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json"

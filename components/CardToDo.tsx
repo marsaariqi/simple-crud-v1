@@ -3,10 +3,10 @@ import EditDeleteIcon from './EditDeleteIcon';
 
 
 const getToDo = async () => {
-
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   // await new Promise(resolve => setTimeout(resolve, 2000))
   try {
-    const res = await fetch("https://awbibib-todo.vercel.app/api/todos", { cache: "no-store" });
+    const res = await fetch(`${baseUrl}/api/todos`, { cache: "no-store" });
 
     if (!res.ok) {
       throw new Error("Failed to fetch ToDo")

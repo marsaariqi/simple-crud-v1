@@ -12,6 +12,7 @@ const NewTaskButton = () => {
     const [prio, setPrio] = useState("low");
     const [openModal, setOpenModal] = useState<boolean>(false);
     const router = useRouter();
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
     const handlePriorityChange = (e: ChangeEvent<HTMLInputElement>) => {
         setPrio(e.target.value);
@@ -24,7 +25,7 @@ const NewTaskButton = () => {
             return;
         }
         try {
-            const res = await fetch("https://awbibib-todo.vercel.app/api/todos", {
+            const res = await fetch(`${baseUrl}/api/todos`, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
