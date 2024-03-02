@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEventHandler, useState } from "react";
 import Modal from "./Modal";
 import { CgGoogleTasks } from "react-icons/cg";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
@@ -11,6 +12,7 @@ const NewTaskButton = () => {
     const [desc, setDesc] = useState("");
     const [prio, setPrio] = useState("low");
     const [openModal, setOpenModal] = useState<boolean>(false);
+    const [showAlert, setShowAlert] = useState(false);
     const router = useRouter();
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -21,7 +23,8 @@ const NewTaskButton = () => {
     const handleSubmitToDo: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
         if (!title.trim() || !desc.trim()) {
-            alert("Title and Description are required.");
+            //alert("Title and Description are required.");
+            setShowAlert(true);
             return;
         }
         try {
@@ -45,14 +48,20 @@ const NewTaskButton = () => {
                 throw new Error("Failed to create a ToDo")
             }
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
     }
+
+    const handleModalClose = () => {
+        setOpenModal(false);
+        setShowAlert(false);
+    }
+
 
     return (
         <div className="grid grid-cols-8 gap-4">
             <button
-                className="btn btn-info gap-2 col-start-2 col-span-6 text-xl mb-5 rounded-xl md:col-start-3 md:col-span-4"
+                className="btn btn-info gap-2 col-start-2 col-span-6 text-xl mb-5 rounded-xl md:col-start-3 md:col-span-4 hover:scale-105"
                 onClick={() => setOpenModal(true)}
             >
                 <CgGoogleTasks size={26} />
@@ -60,7 +69,7 @@ const NewTaskButton = () => {
                 <FaPlus size={20} />
             </button>
 
-            <Modal openModal={openModal} setOpenModal={setOpenModal}>
+            <Modal openModal={openModal} setOpenModal={handleModalClose}>
                 <form onSubmit={handleSubmitToDo} className='flex flex-col items-center'>
                     <h1 className="text-xl font-bold mb-5 max-w-4xl mx-auto">Create New ToDo!</h1>
                     <input
@@ -119,9 +128,17 @@ const NewTaskButton = () => {
                             Submit
                         </button>
                     </div>
+                    {showAlert && (
+                        <div role="alert" className='alert alert-error mt-4 rounded-xl w-fit flex flex-col'>
+                            <div className="flex flex-row items-center">
+                                <IoMdCloseCircleOutline size={26} color="#222222" />
+                                <span className="ml-2">Title and Description are required.</span>
+                            </div>
+                        </div>
+                    )}
                 </form>
             </Modal>
-        </div>
+        </div >
     );
 };
 

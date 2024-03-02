@@ -45,7 +45,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-neutral px-4">
       <div className="flex-1">
-        <Link href="/" className="text-3xl text-neutral-content font-bold">.todo</Link>
+        <Link href="/" className="text-3xl text-neutral-content font-bold hover:text-slate-50">.todo</Link>
       </div>
       <div className="flex-none">
         <IoIosSunny size={sunnySize} color='#FFA500' className='ease-in-out duration-300' />

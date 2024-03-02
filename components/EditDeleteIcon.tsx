@@ -3,15 +3,19 @@ import { useState } from 'react'
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
 import Modal from './Modal'
 import { useRouter } from 'next/navigation'
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 
 
 const EditDeleteIcon = ({ id, title, desc, prio }: { id: string, title: string, desc: string, prio: string }) => {
     const router = useRouter();
-
+    const [originalTitle, setOriginalTitle] = useState(title);
+    const [originalDesc, setOriginalDesc] = useState(desc);
+    const [originalPrio, setOriginalPrio] = useState(prio);
     const [newTitle, setNewTitle] = useState(title)
     const [newDesc, setNewDesc] = useState(desc)
     const [newPrio, setNewPrio] = useState(prio)
+    const [showAlert, setShowAlert] = useState(false);
 
     const [openModalEdit, setopenModalEdit] = useState<boolean>(false)
     const [openModalDelete, setopenModalDelete] = useState<boolean>(false)
@@ -36,7 +40,11 @@ const EditDeleteIcon = ({ id, title, desc, prio }: { id: string, title: string, 
 
     const handleUpdate = async (e: any) => {
         e.preventDefault();
-
+        if (!newTitle.trim() || !newDesc.trim()) {
+            //alert("Title and Description are required.");
+            setShowAlert(true);
+            return;
+        }
         try {
             const res = await fetch(`${baseUrl}/api/todos/${id}`, {
                 method: "PUT",
@@ -56,13 +64,24 @@ const EditDeleteIcon = ({ id, title, desc, prio }: { id: string, title: string, 
             console.log(e)
         }
     }
+    const resetToOriginal = () => {
+        setNewTitle(originalTitle);
+        setNewDesc(originalDesc);
+        setNewPrio(originalPrio);
+    };
+
+    const handleEditModalClose = () => {
+        setopenModalEdit(false);
+        setShowAlert(false);
+        resetToOriginal();
+    }
 
     return (
         <>
             <button onClick={() => setopenModalEdit(true)} className="icon-wrapper">
                 <FaRegEdit size={22} />
             </button>
-            <Modal openModal={openModalEdit} setOpenModal={setopenModalEdit}>
+            <Modal openModal={openModalEdit} setOpenModal={handleEditModalClose}>
                 <form onSubmit={handleUpdate} className='flex flex-col items-center'>
                     <h1 className="text-xl font-bold mb-5">Edit this ToDo!</h1>
                     <input
@@ -121,6 +140,14 @@ const EditDeleteIcon = ({ id, title, desc, prio }: { id: string, title: string, 
                             Update
                         </button>
                     </div>
+                    {showAlert && (
+                        <div role="alert" className='alert alert-error mt-4 rounded-xl w-fit flex flex-col'>
+                            <div className="flex flex-row items-center">
+                                <IoMdCloseCircleOutline size={26} color="#222222" />
+                                <span className="ml-2">Title and Description are required.</span>
+                            </div>
+                        </div>
+                    )}
                 </form>
             </Modal>
             <button onClick={() => setopenModalDelete(true)} className="icon-wrapper">
