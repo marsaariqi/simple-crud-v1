@@ -8,7 +8,7 @@ const Footer = () => {
                 <p>©2024 awbibib :3</p>
             </aside>
             <nav className="grid-flow-col gap-6 md:place-self-center mb-2 md:mb-0">
-                <a href="https://github.com/marsaariqi" target="_blank" rel="noopener noreferrer" className='fIcon' >
+                <a href="https://github.com/marsaariqi/simple-crud-v1" target="_blank" rel="noopener noreferrer" className='fIcon' >
                     <FaGithub size={40} />
                 </a>
                 <a href="https://www.linkedin.com/in/marsa-ariqi-gustiandza-1023851b7/" target="_blank" rel="noopener noreferrer" className='fIcon'>
