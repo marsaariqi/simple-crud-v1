@@ -38,7 +38,7 @@ const EditDeleteIcon = ({ id, title, desc, prio }: { id: string, title: string, 
         e.preventDefault();
 
         try {
-            const res = await fetch(`http://localhost:3000/api/todos/${id}`, {
+            const res = await fetch(`https://awbibib-todo.vercel.app/api/todos/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json"
