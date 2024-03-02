@@ -77,8 +77,14 @@ const EditDeleteIcon = ({ id, title, desc, prio }: { id: string, title: string, 
                         placeholder="Description here"
                         value={newDesc}
                         onChange={e => setNewDesc(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' && !e.shiftKey) {
+                                e.preventDefault();
+                                setNewDesc(prevDesc => prevDesc + '\n');
+                            }
+                        }}
                         rows={5}
-                    ></textarea>
+                    />
                     <label className="font-bold text-lg -mb-2 mt-2">Priority</label>
                     <div className="flex mt-2">
                         <div className="form-control">

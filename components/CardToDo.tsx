@@ -33,13 +33,15 @@ const CardToDo = async () => {
         return (
           <div key={t._id} className={`card w-72 bg-base-100 shadow-xl card-bordered rounded-3xl border-4 ${t.prio === 'high' ? 'border-red-400' : 'border-orange-200'}`}>
             <div className="card-body overflow-auto">
-              <h2 className="card-title justify-between break-word overflow-hidden text-overflow-ellipsis">
+              <h2 className="card-title justify-between text-pretty overflow-hidden text-overflow-ellipsis">
                 {t.title}
               </h2>
               <div className="badge badge-secondary justify-start font-bold">{dayAbbreviation}
               </div>
               <hr className="h-px my-1 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-              <p className='break-word overflow-hidden text-overflow-ellipsis'>{t.desc}</p>
+              <p>
+                <pre className='whitespace-pre-line text-pretty break-word overflow-hidden text-overflow-ellipsis'>{t.desc}</pre>
+              </p>
               <div className="card-actions justify-end">
                 <EditDeleteIcon id={t._id} title={t.title} desc={t.desc} prio={t.prio} />
               </div>

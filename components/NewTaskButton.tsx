@@ -75,6 +75,12 @@ const NewTaskButton = () => {
                         placeholder="Description here"
                         value={desc}
                         onChange={(e) => setDesc(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' && !e.shiftKey) {
+                                e.preventDefault();
+                                setDesc(prevDesc => prevDesc + '\n');
+                            }
+                        }}
                         rows={5}
                     />
                     <label className="font-bold text-lg -mb-2 mt-2">Priority</label>
