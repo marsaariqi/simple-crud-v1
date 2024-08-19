@@ -28,7 +28,12 @@ export default function RootLayout({
             <Footer />
           </ClientThemeWrapper>
         </ThemeProvider>
-        <ToastContainer position="top-center" containerId="a" stacked />
+        <ToastContainer
+          position="top-center"
+          containerId="a"
+          stacked
+          autoClose={3000}
+        />
       </body>
     </html>
   );

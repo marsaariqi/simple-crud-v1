@@ -140,7 +140,7 @@ const NewTaskButton = () => {
           <input
             type="text"
             placeholder="Secret Key"
-            className="input input-bordered w-full max-w-xs rounded-xl text-red-400 font-bold"
+            className="input input-bordered w-full max-w-[8rem] rounded-xl text-red-400 font-bold text-center"
             value={secretKey}
             onChange={(e) => setSecretKey(e.target.value)}
             maxLength={5}

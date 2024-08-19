@@ -191,7 +191,7 @@ const EditDeleteIcon = ({
           <input
             type="text"
             placeholder="Secret Key"
-            className="input input-bordered w-full max-w-xs rounded-xl text-red-400 font-bold"
+            className="input input-bordered w-full max-w-[8rem] rounded-xl text-red-400 font-bold text-center"
             value={key}
             onChange={(e) => setKey(e.target.value)}
             maxLength={5}
@@ -227,11 +227,11 @@ const EditDeleteIcon = ({
           </h1>
           <h1>You will be deleting this ToDo:</h1>
           <p className="text-red-400 font-bold mb-2">{title}</p>
-          <h1 className="font-bold mt-5">Plase enter the Secret Key</h1>
+          <h1 className="font-bold mt-5 mb-1">Plase enter the Secret Key</h1>
           <input
             type="text"
             placeholder="Secret Key"
-            className="input input-bordered w-full max-w-xs rounded-xl text-red-400 font-bold"
+            className="input input-bordered w-full max-w-[8rem] rounded-xl text-red-400 font-bold text-center"
             value={key}
             onChange={(e) => setKey(e.target.value)}
             maxLength={5}
